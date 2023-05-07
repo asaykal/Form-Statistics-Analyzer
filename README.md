@@ -17,10 +17,11 @@ The Form Statistics Analyzer is a Flask-based web application that allows users 
 ## Usage
 1. Clone the repository:
 2. Navigate to the project directory
-3. python app.py
-4. Open your web browser and visit http://localhost:5000 or http://127.0.0.1:5000 to access the application.
-5. Fill out the form fields with the required information and submit the form.
-6. Navigate to the statistics page to view the analyzed statistics and insights.
+3. Add your OpenAI API key into the config.yaml
+4. python app.py
+6. Open your web browser and visit http://localhost:5000 or http://127.0.0.1:5000 to access the application.
+6. Fill out the form fields with the required information and submit the form.
+7. Navigate to the statistics page to view the analyzed statistics and insights.
 
 ## Features
 - Submission of form data and saving to an Excel file
