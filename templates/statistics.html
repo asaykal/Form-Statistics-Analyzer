@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psikolog Takip Otomasyonu</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/statistics_style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <h2>İstatistikler</h2>
+                {% if error %}
+                <p class="error">{{ error }}</p>
+                {% else %}
+                <p>Ortalama Hedef Puanı {{ goal_point_avg }}</p>
+                <p>Ortalama Keyif Puanı: {{ pleasure_point_avg }}</p>
+                <p>Maksimum Hedef Puanı: {{ goal_point_max }}</p>
+                <p>Maksimum Keyif Puanı: {{ pleasure_point_max }}</p>
+                {% if analyzed_statistics %}
+                <p>İstatistiklerin Analizi: {{ analyzed_statistics }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">    
+                <h2>Grafikler</h2>
+                <img src="data:image/png;base64,{{ goal_points_data }}" alt="Goal Points Chart" class="chart">
+                <img src="data:image/png;base64,{{ pleasure_points_data }}" alt="Pleasure Points Chart" class="chart">
+                {% if mission_occurrences_data %}
+                    <img src="data:image/png;base64,{{ mission_occurrences_data }}" alt="Mission Occurrences" class="chart">
+                {% else %}
+                    <p class="no-data">No mission occurrence data available.</p>
+                {% endif %}
+
+                {% endif %}
+            </div>            
+        </div>
+    </div>
+</body>
+</html>
