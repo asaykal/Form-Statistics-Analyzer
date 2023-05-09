@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İstatistikler Hakkında</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-3.6.4.min.js') }}"></script>
+  </head>
+  <body>
+      <div class="container">
+          <div class="chatbox" id="chatbox">
+            {% for message in message_history %}
+              {% if message.role == 'user' %}
+                <div class="message right">
+                  <div class="user">User</div>
+                  <div class="text">{{ message.content }}</div>
+                </div>
+              {% elif message.role == 'assistant' %}
+                <div class="message left">
+                  <div class="user">Assistant</div>
+                  <div class="text">{{ message.content }}</div>
+                </div>
+              {% else %}
+                <div class="message">
+                  <div class="system">{{ message.content }}</div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <form id="message-form">
+              <div class="inputbox">
+                  <input type="text" id="message-input" placeholder="Type your message here...">
+                  <input type="submit" value="Send">
+              </div>
+          </form>
+      </div>
+      <div class="container">
+        <div class="button-container">
+          <form action="{{ url_for('export_history') }}" method="get">
+              <input type="submit" value="Konuşmayı Dışa Aktar (CSV Format)">
+          </form>
+          <form action="{{ url_for('clear_history') }}" method="post">
+              <input type="submit" value="Konuşma Geçmişini Temizle">
+          </form>
+          <a href="/">Anasayfa</a>
+        </div>
+    </div>
+    <script>
+      const chatbox = document.getElementById('chatbox');
+      const messageForm = document.getElementById('message-form');
+      const messageInput = document.getElementById('message-input');
+
+      function createMessage(user, text, align) {
+          const message = document.createElement('div');
+          message.classList.add('message');
+          const userElem = document.createElement('div');
+          userElem.classList.add('user');
+          userElem.innerText = user;
+          const textElem = document.createElement('div');
+          textElem.classList.add('text');
+          textElem.innerText = text;
+          message.appendChild(userElem);
+          message.appendChild(textElem);
+          message.style.justifyContent = align;
+          return message;
+      }
+
+      messageForm.addEventListener('submit', e => {
+          e.preventDefault();
+          const message = messageInput.value.trim();
+          if (message) {
+              const userMessage = createMessage('User', message, 'right');
+              chatbox.appendChild(userMessage);
+              fetch('/send_message', {
+                  method: 'POST',
+                  body: new URLSearchParams({
+                      message: message
+                  })
+              })
+              .then(response => response.json())
+              .then(data => {
+                  const assistantMessage = createMessage('Assistant', data.response, 'left');
+                  chatbox.appendChild(assistantMessage);
+                  messageInput.value = '';
+              })
+              .catch(error => console.error(error));
+          }
+      });
+      $(function() {
+        $('#export-form').submit(function(event) {
+            event.preventDefault();  
+            $.get($(this).attr('action'), function(response) {
+                var blob = new Blob([response], {type: 'text/csv'});
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'history.csv';
+                link.click();
+            });
+        });
+    });
+    $(function() {
+        $('#clear-form').submit(function(event) {
+            event.preventDefault();  
+            $.post($(this).attr('action'), function(response) {
+                location.reload();
+            });
+        });
+    });
+    </script>
+  </body>
+</html>
