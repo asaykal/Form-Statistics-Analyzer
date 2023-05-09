@@ -3,7 +3,7 @@ The Form Statistics Analyzer is a Flask-based web application that allows users 
 
 ## Screenshots
 ![screencapture-127-0-0-1-5000-2023-05-07-19_13_44](https://user-images.githubusercontent.com/46647858/236690342-41936c94-f3ec-44bb-9616-cee352370b01.png)
-![screencapture-127-0-0-1-8080-2023-05-09-22_10_39](https://github.com/asaykal/Form-Statistics-Analyzer/assets/46647858/68dbcd15-5d17-4dec-99cb-b712a9b68862)
+![screencapture-127-0-0-1-8080-2023-05-09-22_10_39](https://github.com/asaykal/Form-Statistics-Analyzer/assets/46647858/a4fa3106-f463-468b-9492-7cc9b3110c52)
 ![screencapture-127-0-0-1-8080-statistics-2023-05-09-22_01_17](https://github.com/asaykal/Form-Statistics-Analyzer/assets/46647858/df2b2f95-df70-402d-a93e-ac0bb1e9ccbf)
 ![screencapture-127-0-0-1-8080-talk-about-statistics-2023-05-09-22_10_10](https://github.com/asaykal/Form-Statistics-Analyzer/assets/46647858/18e288ac-22f2-4fca-9db7-e3e5f8d2022d)
 
