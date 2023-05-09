@@ -3,8 +3,9 @@ The Form Statistics Analyzer is a Flask-based web application that allows users 
 
 ## Screenshots
 ![screencapture-127-0-0-1-5000-2023-05-07-19_13_44](https://user-images.githubusercontent.com/46647858/236690342-41936c94-f3ec-44bb-9616-cee352370b01.png)
-
-![screencapture-127-0-0-1-5000-statistics-2023-05-07-19_12_41](https://user-images.githubusercontent.com/46647858/236690346-a906f548-a46b-4736-93c3-3247ea218494.png)
+![screencapture-127-0-0-1-8080-2023-05-09-22_10_39](https://github.com/asaykal/Form-Statistics-Analyzer/assets/46647858/fb47b779-294b-4e7c-a3e9-639639ce8619)
+![screencapture-127-0-0-1-8080-statistics-2023-05-09-22_01_17](https://github.com/asaykal/Form-Statistics-Analyzer/assets/46647858/df2b2f95-df70-402d-a93e-ac0bb1e9ccbf)
+![screencapture-127-0-0-1-8080-talk-about-statistics-2023-05-09-22_10_10](https://github.com/asaykal/Form-Statistics-Analyzer/assets/46647858/18e288ac-22f2-4fca-9db7-e3e5f8d2022d)
 
 
 ## Technologies Used
@@ -30,3 +31,4 @@ The Form Statistics Analyzer is a Flask-based web application that allows users 
 - Calculation of average and maximum goal points and pleasure points
 - Analysis of mission occurrences and suggestions based on collected data
 - Integration with OpenAI GPT-3.5 for generating insights and suggestions
+- Interactive talking about statistics and performance via OpenAI GPT-3.5 LLM
