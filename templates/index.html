@@ -55,6 +55,160 @@
                 <a href="{{ url_for('statistics_endpoint') }}">İstatistikleri Görüntüle</a>
             </div>
         </div>
+        <div class="row">
+            <div class = "column">
+                {% if error %}
+                <p>{{ error }}</p>
+                {% else %}
+                    <table>
+                        <tr>
+                            <th>Zaman Aralığı</th>
+                            <th>Yapılan</th>
+                            <th>Hedef</th>
+                            <th>Hedef Puanı</th>
+                            <th>Keyif Puanı</th>
+                            <th>Notlar</th>
+                            <th></th>  
+                        </tr>
+                        {% for entry in data %}
+                        <tr>
+                            <td>{{ entry.time }}</td>
+                            <td>{{ entry.mission }}</td>
+                            <td>{{ entry.goal }}</td>
+                            <td>{{ entry.goal_point }}</td>
+                            <td>{{ entry.pleasure_point }}</td>
+                            <td>{{ entry.notes }}</td>
+                            <td>
+                                <form action="/delete" method="POST" onsubmit="return confirmDelete();">
+                                    <input type="hidden" name="time" value="{{ entry.time }}">
+                                    <input type="hidden" name="mission" value="{{ entry.mission }}">
+                                    <input type="hidden" name="goal" value="{{ entry.goal }}">
+                                    <input type="hidden" name="goal_point" value="{{ entry.goal_point }}">
+                                    <input type="hidden" name="pleasure_point" value="{{ entry.pleasure_point }}">
+                                    <input type="hidden" name="notes" value="{{ entry.notes }}">
+                                    <button type="submit" class="delete" name="delete" id="delete">Delete</button>
+                                </form>
+                                
+                                <script>
+                                function confirmDelete() {
+                                    return confirm("Are you sure you want to delete this entry?");
+                                }
+                                </script>
+                                
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psikolog Takip Otomasyonu</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+    <center><h1>Psikolog Takip Otomasyonu</h1></center>
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <form id="form" method="POST" action="{{ url_for('form_endpoint') }}">
+                    <div class="form-group">
+                        <label for="time">Saat kaçla kaç arasında? (Format : 13 - 14)</label>
+                        <input type="text" name="time" id="time" placeholder="..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mission">Ne yaptım? (Örneğin kitap okudum)</label>
+                        <input type="text" name="mission" id="mission" placeholder="..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goal">Bunu yapmaktaki amacım neydi? (Örneğin kitabı merak etmiştim)</label>
+                        <input type="text" name="goal" id="goal" placeholder="..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goal-point">Amacımın ne kadarına ulaşabildim? (Örneğin merağımın ne kadarını giderebildim?) (0 - 10 Arasında)</label>
+                        <input type="text" name="goal-point" id="goal-point" placeholder="..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pleasure-point">Yaptığım bu şeyden ne kadar keyif aldım? (0 - 10 Arasında)</label>
+                        <input type="text" name="pleasure-point" id="pleasure-point" placeholder="..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notlar (Örneğin kitabın sonunu getiremedim)</label>
+                        <input type="text" name="notes" id="notes" placeholder="..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="submit" id="submit" value="Gönder">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <a href="{{ url_for('statistics_endpoint') }}">İstatistikleri Görüntüle</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class = "column">
+                {% if error %}
+                <p>{{ error }}</p>
+                {% else %}
+                    <table>
+                        <tr>
+                            <th>Zaman Aralığı</th>
+                            <th>Yapılan</th>
+                            <th>Hedef</th>
+                            <th>Hedef Puanı</th>
+                            <th>Keyif Puanı</th>
+                            <th>Notlar</th>
+                            <th></th>  
+                        </tr>
+                        {% for entry in data %}
+                        <tr>
+                            <td>{{ entry.time }}</td>
+                            <td>{{ entry.mission }}</td>
+                            <td>{{ entry.goal }}</td>
+                            <td>{{ entry.goal_point }}</td>
+                            <td>{{ entry.pleasure_point }}</td>
+                            <td>{{ entry.notes }}</td>
+                            <td>
+                                <form action="/delete" method="POST" onsubmit="return confirmDelete();">
+                                    <input type="hidden" name="time" value="{{ entry.time }}">
+                                    <input type="hidden" name="mission" value="{{ entry.mission }}">
+                                    <input type="hidden" name="goal" value="{{ entry.goal }}">
+                                    <input type="hidden" name="goal_point" value="{{ entry.goal_point }}">
+                                    <input type="hidden" name="pleasure_point" value="{{ entry.pleasure_point }}">
+                                    <input type="hidden" name="notes" value="{{ entry.notes }}">
+                                    <button type="submit" class="delete" name="delete" id="delete">Delete</button>
+                                </form>
+                                
+                                <script>
+                                function confirmDelete() {
+                                    return confirm("Are you sure you want to delete this entry?");
+                                }
+                                </script>
+                                
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </body>
 </html>
