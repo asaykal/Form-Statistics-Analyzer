@@ -19,10 +19,9 @@
                 <p>Ortalama Keyif Puanı: {{ pleasure_point_avg }}</p>
                 <p>Maksimum Hedef Puanı: {{ goal_point_max }}</p>
                 <p>Maksimum Keyif Puanı: {{ pleasure_point_max }}</p>
-                {% if analyzed_statistics %}
-                <p>İstatistiklerin Analizi: {{ analyzed_statistics }}</p>
-                {% endif %}
-            </div>
+                <a href="{{ url_for('talk_about_statistics_endpoint') }}">AI Analizi</a>
+                <a href="/">Anasayfa</a>
+            </div>  
         </div>
         <div class="row">
             <div class="column">    
