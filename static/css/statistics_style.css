@@ -52,3 +52,17 @@ p.no-data {
   font-style: italic;
   color: #999999;
 }
+
+a {
+  display: inline-block;
+  padding: 10px;
+  background-color: #0055aa;
+  color: #e6e6e6;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  background-color: #003377;
+}
