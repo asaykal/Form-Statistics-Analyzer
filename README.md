@@ -32,3 +32,6 @@ The Form Statistics Analyzer is a Flask-based web application that allows users 
 - Analysis of mission occurrences and suggestions based on collected data
 - Integration with OpenAI GPT-3.5 for generating insights and suggestions
 - Interactive talking about statistics and performance via OpenAI GPT-3.5 LLM
+
+###Update Note 09.05.2023
+I implemented my [GPT3.5 WebUI](https://github.com/asaykal/gpt3-5-flask-webui) for more interactive analysis. 
