@@ -144,10 +144,7 @@ def form_endpoint():
 
     return jsonify({'response': 'Form is submitted'})
 
-with open("config.yaml", "r") as f:
-    config = yaml.safe_load(f)
-
-api_key = config["openai"]["api_key"]
+api_key = os.environ.get("OPENAI_API_KEY")
 openai.api_key = api_key
 
 def analyze_statistics(times, mission_names, goal_points, pleasure_points, notes):
@@ -210,8 +207,17 @@ def analyze_statistics(times, mission_names, goal_points, pleasure_points, notes
 
     return analyzed_statistics
 
-def analyzed_statistics_method():
+def create_excel_file():
     file_name = f"form_results_{date.today()}.xlsx"
+    if not os.path.exists(file_name):
+        wb = Workbook()
+        ws = wb.active
+        ws.append(['Time', 'Mission', 'Goal', 'Goal Point', 'Pleasure Point', 'Notes'])
+        wb.save(file_name)
+    return file_name    
+
+def analyzed_statistics_method(excel_file):
+    file_name = excel_file
     wb = load_workbook(file_name)
     ws = wb.active
 
@@ -225,7 +231,7 @@ def analyzed_statistics_method():
     return analyzed_statistics
 
 message_history = []
-analyzed_statistics = analyzed_statistics_method() 
+analyzed_statistics = analyzed_statistics_method(create_excel_file()) 
 #message_history.append({'role': 'system', 'content': f"Statistics Analysis:\n{analyzed_statistics}\nThese data belongs to a 21 year old person who is in deep depression condition for about 3 years. And this data form created for suggession on psychologist suggestion."})
 
 @app.route('/talk_about_statistics', methods=['GET', 'POST'])
